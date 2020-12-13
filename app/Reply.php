@@ -33,10 +33,10 @@ class Reply extends Model
     public function author(){
         return $this->belongsTo(User::class, 'user_id');
     }
-
     public function getForumAttribute(){
         return $this->post->forum;
     }
+
 
     public function pathAttachment(){
         return "/images/replies/" . $this->attachment;
