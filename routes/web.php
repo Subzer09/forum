@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +21,13 @@ Route::get('/','ForumsController@index');
 Route::get('/forums/{forum}', 'ForumsController@show');
 Route::get('/posts/{post}', 'PostsController@show');
 Route::post('/forums', 'ForumsController@store');
-Route::post('posts', 'PostsController@store');
+Route::post('/posts', 'PostsController@store');
+Route::post('replies', 'RepliesController@store');
+
+Route::get('/images/{path}/{attachment}', function($path, $attachment){
+    $storagePath = Storage::disk($path)->getDriver()->getAdapter()->getPathPrefix();
+    $imageFilePath = $storagePath . $attachment;
+    if(File::exists($imageFilePath)){
+        return Image::make($imageFilePath)->response();
+    }
+});

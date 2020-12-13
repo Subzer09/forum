@@ -4,10 +4,13 @@
 
 use App\Forum;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(Forum::class, function (Faker $faker) {
+    $name = $faker->sentence;
     return [
-        "name" => $faker->sentence,
+        "name" => $name,
+        "slug" => Str::slug($name,'-'),
         "description" => $faker->paragraph
     ];
 });

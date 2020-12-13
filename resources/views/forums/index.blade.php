@@ -6,7 +6,7 @@
             @forelse($forums as $forum)
                 <div class="card">
                     <div class="card-header bg-danger text-white">
-                        <a href="/forums/{{ $forum->id }}">{{ $forum->name }}</a>
+                        <a href="/forums/{{ $forum->slug }}">{{ $forum->name }}</a>
                         <span class="float-right">
                             {{ __("Posts") }} : {{ $forum->posts->count() }},
                             {{ __("Respuestas") }} : {{ $forum->replies->count() }}
@@ -37,7 +37,6 @@
                     <textarea id="description" name="description" class="form-control">{{ old('description') }}</textarea>
                 </div>
                 <button class="btn btn-success" type="submit">{{ __("Añadir Foro") }}</button>
-
             </form>
         </div>
     </div>
