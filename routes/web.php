@@ -24,6 +24,8 @@ Route::post('/forums', 'ForumsController@store');
 Route::post('/posts', 'PostsController@store');
 Route::post('replies', 'RepliesController@store');
 
+/*
+ * RUTA PARA OBTENER LAS IMAGENES*/
 Route::get('/images/{path}/{attachment}', function($path, $attachment){
     $storagePath = Storage::disk($path)->getDriver()->getAdapter()->getPathPrefix();
     $imageFilePath = $storagePath . $attachment;
